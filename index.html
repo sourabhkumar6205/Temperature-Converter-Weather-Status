@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter & Weather Status</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #74ebd5, #ACB6E5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container{
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        input{
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        button{
+            width: 95%;
+            padding: 12px;
+            background-color: #0078ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover{
+            background-color: #005fcc;
+        }
+
+        #icon{
+            font-size: 50px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Temperature Converter & Weather Status</h1>
+
+        Enter Temperature (°C):
+        <input type="text" id="d1"><br>
+
+        <button onclick="convert()">Convert</button><br><br>
+        Temperature in Fahrenheit:<br>
+        <input type="text" id="d2" readonly><br><br>
+
+        Weather Status:<br>
+        <input type="text" id="d3" readonly><br>
+
+        <div id="icon"></div>
+    </div>
+
+<script>
+function convert() {
+    let c = Number(document.getElementById("d1").value);
+    let f = (c * 9/5) + 32;
+    document.getElementById("d2").value = f.toFixed(2);
+
+    let status;
+    let icon;
+
+    if(c < 10){
+        status = "Very Cold";
+        icon = "❄️";
+    }
+    else if(c < 20){
+        status = "Cold";
+        icon = "🧥";
+    }
+    else if(c < 30){
+        status = "Normal";
+        icon = "⛅";
+    }
+    else if(c < 40){
+        status = "Hot";
+        icon = "🌞";
+    }
+    else{
+        status = "Very Hot";
+        icon = "🔥";
+    }
+
+    document.getElementById("d3").value = status;
+    document.getElementById("icon").innerHTML = icon;
+}
+</script>
+
+</body>
+</html>
